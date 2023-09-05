@@ -1,21 +1,24 @@
 {
 	"name": "codespaces-commandbox",
 	"image": "ortussolutions/commandbox:latest",
+	"forwardPorts": [8080],
+	
+	"customizations": {
+		// Set *default* container specific settings.json values on container create.
+		"settings": { 
+			"terminal.integrated.shell.linux": "/bin/bash"
+		},
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash"
+		// Add the IDs of VS Code extensions you want installed when the container is created.
+		"extensions": [
+			"formulahendry.auto-close-tag",
+			"kamasamak.vscode-cfml",
+			"ortus-solutions.vscode-testbox" 
+		]
 	},
 
-	// Add the IDs of VS Code extensions you want installed when the container is created.
-	"extensions": [
-		"formulahendry.auto-close-tag",
-		"kamasamak.vscode-cfml",
-		"ortus-solutions.vscode-testbox" 
-	],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "box install && box server start",
+	"postCreateCommand": "box install && box server start port=8080"
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "node"
